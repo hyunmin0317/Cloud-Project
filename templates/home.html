@@ -10,19 +10,13 @@
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=t7r550sr3g&submodules=geocoder"></script>
 </head>
 <body>
-<div id="map" style="width:100%;height:400px;"></div>
+<div id="map" style="width:100%;height:600px;"></div>
 
-
-{% for data in data_list %}
-    {{ data }}<br>
-
-{% endfor %}
 
 {#<script type="text/javascript" src="{% static 'js/draw-ping.js' %}" ></script>#}
 
 <script>
 var map = new naver.maps.Map('map', {
-
         scaleControl: false,
         logoControl: false,
         mapDataControl: false,
