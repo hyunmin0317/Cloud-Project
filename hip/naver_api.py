@@ -4,7 +4,7 @@ import requests
 
 def hot_place(place):
     url = f'https://map.naver.com/v5/api/search?query={place}%20%EA%B0%80%EB%B3%BC%EB%A7%8C%ED%95%9C%EA%B3%B3&displayCount=100'
-    res = requests.get(url, headers={'authority': 'map.naver.com'}).json()
+    res = requests.get(url, headers={'authority': 'map.naver.com', 'method': 'GET'}).json()
     data_list = res['result']['place']['list']
     return data_list
 
