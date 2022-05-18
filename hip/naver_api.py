@@ -6,9 +6,7 @@ def hot_place(place):
     url = f'https://map.naver.com/v5/api/search?query={place}%20%EA%B0%80%EB%B3%BC%EB%A7%8C%ED%95%9C%EA%B3%B3&displayCount=100'
     res = requests.get(url, headers={'authority': 'map.naver.com'}).json()
     data_list = res['result']['place']['list']
-
-    for data in data_list:
-        print(data)
+    return data_list
 
 
 def search(query):
@@ -47,5 +45,5 @@ def image(query):
         print("Error Code:" + rescode)
 
 hot_place('서울')
-search('롯데월드')
-image('롯데월드')
+# search('롯데월드')
+# image('롯데월드')

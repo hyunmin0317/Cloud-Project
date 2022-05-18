@@ -1,4 +1,5 @@
 var map = new naver.maps.Map('map', {
+
         scaleControl: false,
         logoControl: false,
         mapDataControl: false,
@@ -6,7 +7,7 @@ var map = new naver.maps.Map('map', {
         minZoom: 6
     });
 
-var marker = marker = new naver.maps.Marker({
+var marker = new naver.maps.Marker({
     position: new naver.maps.LatLng(37.5666805, 126.9784147),
     map: map,
 });
@@ -20,7 +21,7 @@ var contentString = [
         '       <a href="http://www.seoul.go.kr" target="_blank">www.seoul.go.kr/</a>',
         '   </p>',
         '</div>'
-    ].join('');
+].join('');
 
 var infowindow = new naver.maps.InfoWindow({
     content: contentString

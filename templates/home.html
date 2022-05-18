@@ -11,6 +11,18 @@
 <body>
 <div id="map" style="width:100%;height:400px;"></div>
 
+
+{% for data in data_list %}
+    {{ data.rank }}<br>
+    {{ data.id }}<br>
+    {{ data.name }}<br>
+    {{ data.tel }}<br>
+    {{ data.address }}<br>
+    {{ data.x }}<br>
+    {{ data.y }}<br>
+    {{ data.thumUrl }}<br><br>
+{% endfor %}
+
 {#<script type="text/javascript" src="{% static 'naver-map/draw-coordinate.js' %}" ></script>#}
 <script>
 var map = new naver.maps.Map('map', {
@@ -22,7 +34,7 @@ var map = new naver.maps.Map('map', {
         minZoom: 6
     });
 
-var marker = marker = new naver.maps.Marker({
+var marker = new naver.maps.Marker({
     position: new naver.maps.LatLng(37.5666805, 126.9784147),
     map: map,
 });
