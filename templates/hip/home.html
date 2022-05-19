@@ -1,78 +1,79 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title>간단한 지도 표시하기</title>
-    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=t7r550sr3g"></script>
-</head>
-<body>
-<div id="map" style="width:100%;height:400px;"></div>
+{% extends 'base.html' %}
+{% load static %}
 
-<script>
-var map = new naver.maps.Map(document.getElementById('map'), {
-    scaleControl: false,
-    logoControl: false,
-    mapDataControl: false,
-    zoomControl: true,
-    minZoom: 6,
-    zoom: 12,
-});
+{% block title %}
+    <title>HIP</title>
+{% endblock %}
 
-var HOME_PATH = window.HOME_PATH || '.';
+{% block main_area %}
+<div id="map" style="width:100%;height:600px;"></div>
+{% endblock %}
 
-naver.maps.Event.once(map, 'init', function () {
-    $.ajax({
-        url: 'https://raw.githubusercontent.com/ssm-lim/bPolygon/master/bPolygon/highmap/json/11.json',
-        dataType: 'json',
-        success: startDataLayer
-    });
-});
+{% block js %}
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="{% static 'js/geojsons.js' %}" ></script>
 
-function startDataLayer(geojson) {
-    map.data.addGeoJson(geojson);
-
-    map.data.setStyle(function(feature) {
-        var color = 'red';
-
-        if (feature.getProperty('isColorful')) {
-            color = feature.getProperty('color');
-        }
-
-        return {
-            fillColor: color,
-            strokeColor: color,
-            strokeWeight: 2,
-            icon: null
-        };
-    });
-
-    map.data.addListener('click', function(e) {
-        e.feature.setProperty('isColorful', true);
-    });
-
-    map.data.addListener('dblclick', function(e) {
-        var bounds = e.feature.getBounds();
-
-        if (bounds) {
-            map.panToBounds(bounds);
-        }
-    });
-
-    map.data.addListener('mouseover', function(e) {
-        map.data.overrideStyle(e.feature, {
-            strokeWeight: 8,
-            icon: 'https://github.com/navermaps/maps.js.ncp/blob/master/docs/img/example/pin_spot.png?raw=true'
-        });
-    });
-
-    map.data.addListener('mouseout', function(e) {
-        map.data.revertStyle();
-    });
-}
-</script>
-</body>
-</html>
+    {#<script>#}
+{#var map = new naver.maps.Map(document.getElementById('map'), {#}
+{#    scaleControl: false,#}
+{#    logoControl: false,#}
+{#    mapDataControl: false,#}
+{#    zoomControl: true,#}
+{#    minZoom: 6,#}
+{#    zoom: 12,#}
+{#});#}
+{##}
+{#var HOME_PATH = window.HOME_PATH || '.';#}
+{##}
+{#naver.maps.Event.once(map, 'init', function () {#}
+{#    $.ajax({#}
+{#        url: 'https://raw.githubusercontent.com/ssm-lim/bPolygon/master/bPolygon/highmap/json/11.json',#}
+{#        dataType: 'json',#}
+{#        success: startDataLayer#}
+{#    });#}
+{#});#}
+{##}
+{#function startDataLayer(geojson) {#}
+{#    map.data.addGeoJson(geojson);#}
+{##}
+{#    map.data.setStyle(function(feature) {#}
+{#        var color = 'red';#}
+{##}
+{#        if (feature.getProperty('isColorful')) {#}
+{#            color = feature.getProperty('color');#}
+{#        }#}
+{##}
+{#        return {#}
+{#            fillColor: color,#}
+{#            strokeColor: color,#}
+{#            strokeWeight: 2,#}
+{#            icon: null#}
+{#        };#}
+{#    });#}
+{##}
+{#    map.data.addListener('click', function(e) {#}
+{#        e.feature.setProperty('isColorful', true);#}
+{#    });#}
+{##}
+{#    map.data.addListener('dblclick', function(e) {#}
+{#        var bounds = e.feature.getBounds();#}
+{##}
+{#        if (bounds) {#}
+{#            map.panToBounds(bounds);#}
+{#        }#}
+{#    });#}
+{##}
+{#    map.data.addListener('mouseover', function(e) {#}
+{#        map.data.overrideStyle(e.feature, {#}
+{#            strokeWeight: 8,#}
+{#            icon: 'https://github.com/navermaps/maps.js.ncp/blob/master/docs/img/example/pin_spot.png?raw=true'#}
+{#        });#}
+{#    });#}
+{##}
+{#    map.data.addListener('mouseout', function(e) {#}
+{#        map.data.revertStyle();#}
+{#    });#}
+{#}#}
+{#</script>#}
+{% endblock %}
