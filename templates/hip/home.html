@@ -22,7 +22,7 @@ var map = new naver.maps.Map(document.getElementById('map'), {
     mapDataControl: false,
     zoomControl: true,
     minZoom: 6,
-    zoom: 12,
+    zoom: 10,
 });
 
 naver.maps.Event.once(map, 'init', function () {
@@ -41,12 +41,15 @@ function startDataLayer(geojson) {
     map.data.addGeoJson(geojson);
 
     map.data.setStyle(function(feature) {
+        var regionName = feature.getProperty('name');
+
          var styleOptions = {
-            fillColor: '#ff0000',
-            fillOpacity: 0.0001,
-            strokeColor: '#ff0000',
-            strokeWeight: 2,
-            strokeOpacity: 0.4
+             title: regionName,
+             fillColor: '#ffffff',
+             fillOpacity: 1,
+             strokeColor: '#000000',
+             strokeWeight: 2,
+             strokeOpacity: 1,
         };
 
         if (feature.getProperty('focus')) {
@@ -61,21 +64,17 @@ function startDataLayer(geojson) {
     });
 
     map.data.addListener('click', function(e) {
-        var feature = e.feature;
-
-        if (feature.getProperty('focus') !== true) {
-            feature.setProperty('focus', true);
-        } else {
-            feature.setProperty('focus', false);
+        var bounds = e.feature.getBounds();
+        if (bounds) {
+            map.panToBounds(bounds);
         }
     });
 
     map.data.addListener('dblclick', function(e) {
-        var bounds = e.feature.getBounds();
-
-        if (bounds) {
-            map.panToBounds(bounds);
-        }
+        var feature = e.feature,
+            regionName = feature.getProperty('name');
+        var link = '/hip/'+regionName;
+        window.location.href = link;
     });
 
     map.data.addListener('mouseover', function(e) {
