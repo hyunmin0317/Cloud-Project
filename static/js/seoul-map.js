@@ -1,21 +1,3 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block title %}
-    <title>HIP</title>
-{% endblock %}
-
-{% block main_area %}
-<div id="map" style="width:100%;height:600px;"></div>
-
-{% endblock %}
-
-{% block js %}
-<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-{#<script type="text/javascript" src="{% static 'js/geojson.js' %}" ></script>#}
-
-    <script>
 var map = new naver.maps.Map(document.getElementById('map'), {
     scaleControl: false,
     logoControl: false,
@@ -100,5 +82,3 @@ function startDataLayer(geojson) {
         map.data.revertStyle();
     });
 }
-</script>
-{% endblock %}

@@ -7,8 +7,6 @@ var map = new naver.maps.Map(document.getElementById('map'), {
     zoom: 12,
 });
 
-var HOME_PATH = window.HOME_PATH || '.';
-
 naver.maps.Event.once(map, 'init', function () {
     $.ajax({
         url: 'https://raw.githubusercontent.com/ssm-lim/bPolygon/master/bPolygon/highmap/json/11.json',
