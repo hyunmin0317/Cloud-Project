@@ -1,8 +1,12 @@
-from django.http import JsonResponse
 from django.shortcuts import render
 from hip.naver_api import hot_place
 
+
 def home(request):
+    return render(request, 'hip/home.html')
+
+
+def all(request):
     data_list = []
     regions = ["강남구", "강동구", "강북구", "강서구", "관악구", "광진구",
               "구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구",
@@ -11,9 +15,9 @@ def home(request):
     for region in regions:
         data_list += hot_place(region)
     context = {"data_list":data_list}
-    return render(request, 'home.html', context)
+    return render(request, 'hip/detail.html', context)
 
 
-def hip(request, region):
+def detail(request, region):
     context = {"region":region, "data_list": hot_place(region)}
-    return render(request, 'home.html', context)
+    return render(request, 'hip/detail.html', context)
