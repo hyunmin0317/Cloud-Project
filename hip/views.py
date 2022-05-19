@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from hip.naver_api import hot_place
 
@@ -10,4 +11,9 @@ def home(request):
     for region in regions:
         data_list += hot_place(region)
     context = {"data_list":data_list}
+    return render(request, 'home.html', context)
+
+
+def hip(request, region):
+    context = {"region":region, "data_list": hot_place(region)}
     return render(request, 'home.html', context)

@@ -1,20 +1,20 @@
-<!DOCTYPE html>
-<html>
-{% load static %}
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title>간단한 지도 표시하기</title>
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=t7r550sr3g"></script>
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=t7r550sr3g&submodules=geocoder"></script>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if region %}
+        <title>HIP - {{ region }}</title>
+    {% else %}
+        <title>HIP</title>
+    {% endif %}
+{% endblock %}
+
+{% block main_area %}
 <div id="map" style="width:100%;height:600px;"></div>
+{% endblock %}
 
 
 {#<script type="text/javascript" src="{% static 'js/draw-ping.js' %}" ></script>#}
-
+{% block js %}
 <script>
 var map = new naver.maps.Map('map', {
         scaleControl: false,
@@ -68,6 +68,4 @@ for (var i=0, ii=markers.length; i<ii; i++) {
     naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
 }
 </script>
-
-</body>
-</html>
+{% endblock %}
