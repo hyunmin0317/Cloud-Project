@@ -16,13 +16,20 @@
 {#<script type="text/javascript" src="{% static 'js/geojson.js' %}" ></script>#}
 
     <script>
+    var dokdo = new naver.maps.LatLngBounds(
+    new naver.maps.LatLng(37.5, 126.9),
+    new naver.maps.LatLng(37.6, 127.1));
+
+
+
 var map = new naver.maps.Map(document.getElementById('map'), {
-    scaleControl: false,
-    logoControl: false,
-    mapDataControl: false,
-    zoomControl: true,
-    minZoom: 6,
-    zoom: 10,
+    minZoom: 11,
+    maxZoom: 11,
+    zoom: 11,
+    maxBounds: dokdo,
+    mapTypes: new naver.maps.MapTypeRegistry({
+        'normal': naver.maps.NaverStyleMapTypeOptions.getVectorMap()
+    }),
 });
 
 naver.maps.Event.once(map, 'init', function () {
@@ -99,5 +106,15 @@ function startDataLayer(geojson) {
         map.data.revertStyle();
     });
 }
+
+var defaultMarker = new naver.maps.Marker({
+    position: new naver.maps.LatLng(37.58156996265318, 127.01178832759383),
+    map: map,
+    icon: {
+        content: '<div>Hello</div>',
+        size: new naver.maps.Size(22, 35),
+        anchor: new naver.maps.Point(11, 35)
+    }
+});
 </script>
 {% endblock %}
