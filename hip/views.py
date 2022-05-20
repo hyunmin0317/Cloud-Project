@@ -21,3 +21,6 @@ def all(request):
 def detail(request, region):
     context = {"region":region, "data_list": hot_place(region)}
     return render(request, 'hip/detail.html', context)
+
+def index(request):
+    return render(request, 'hip/index.html')
