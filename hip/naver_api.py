@@ -1,3 +1,4 @@
+import re
 import requests
 
 
@@ -25,8 +26,32 @@ def search(query):
 def image(query):
     client_id = "IDEZlxRWK9_vy7ZmJbtf"
     client_secret = "ofIrQU9z72"
-    url = f"https://openapi.naver.com/v1/search/image?query={query}&display=1"
+    url = f"https://openapi.naver.com/v1/search/image?query={query}&display=5"
     res = requests.get(url, headers={"X-Naver-Client-Id": client_id, "X-Naver-Client-Secret": client_secret})
     if res.ok:
-        data_list = res.json()["items"][0]['link']
+        data_list = res.json()["items"][1]['link']
         return data_list
+
+
+def preprocess(region):
+    i = 1
+    cleanr = re.compile('<.*?>')
+    data_list = hot_place(region)
+    for data in data_list:
+        data['rank'] = i
+        data['title'] = re.sub(cleanr, '', data['title'])
+        data['image'] = image(data['title'])
+        data['category'] = data['category'].split('>')[1]
+        i += 1
+    return data_list
+
+
+def seoul_place():
+    data_list = []
+    regions = ["강남구", "강동구", "강북구", "강서구", "관악구", "광진구",
+               "구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구",
+               "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구",
+               "양천구", "영등포구", "용산구", "은평구", "종로구", "중구", "중랑구"]
+    for region in regions:
+        data_list += hot_place(region)
+    return data_list

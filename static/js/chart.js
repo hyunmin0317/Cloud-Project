@@ -26,7 +26,7 @@ function highMaps() {
 highMaps.prototype.init = function(){
 	var me = this;
 	// 전국단위 지도 로드
-	$.getJSON('https://raw.githubusercontent.com/ssm-lim/bPolygon/master/bPolygon/highmap/json/11.json', function (geojson) {
+	$.getJSON('https://raw.githubusercontent.com/ssm-lim/bPolygon/master/bPolygon/highmap/json/0.json', function (geojson) {
         var data = Highcharts.geojson(geojson, 'map');
         $.each(data, function () {
         	this.drilldown = this.properties['code'];

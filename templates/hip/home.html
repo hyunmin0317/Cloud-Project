@@ -6,7 +6,7 @@
     <style>
     .box {
         float: left;
-        margin: auto;
+        margin: 2px;
         width: 19%;
         box-sizing: border-box;
     }
@@ -14,31 +14,29 @@
 {% endblock %}
 
 {% block main_area %}
-{#<div id="map" style="width:100%;height:600px;"></div>#}
-<div id="map" style="height: 500px; width: 100%; margin: 0 auto; "></div>
-
-    {{ data_list }}
+    <div>
+    <div style="text-align: center"><h1>{{ region }} 핫플레이스</h1></div>
+<div id="map" style="height: 500px; width: 60%; margin: 0 auto; "></div>
+    <div style="width: 100%">
     {% for data in data_list %}
     <div class="box">
         <div class="card mb-5">
             <div class="card-header">
                 <h5 class="card-title">
-                {{ data.title }}
+                {{ data.rank }}. {{ data.title }}
                 </h5>
             </div>
-            <img class="card-img-top" style="height: 300px; object-fit: cover" src="{{ data.image }}">
+            <img class="card-img-top" style="height: 200px; object-fit: cover" src="{{ data.image }}">
             <div class="card-body">
                 <p class="card-text">{{ data.category }}</p>
                 <p class="card-text">{{ data.address }}</p>
                 <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
             </div>
-            <div class="card-footer text-muted">
-                Posted on {{ post.created_at}} by
-                <a href="#">{{ post.author }}</a>
-            </div>
         </div>
     </div>
     {% endfor %}
+    </div>
+    </div>
 {% endblock %}
 
 {% block js %}
