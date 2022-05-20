@@ -7,9 +7,16 @@ def hot_place(place):
     client_secret = "ofIrQU9z72"
     url = f"https://openapi.naver.com/v1/search/local.json?query={place}%20%EA%B0%80%EB%B3%BC%EB%A7%8C%ED%95%9C%EA%B3%B3&display=5"
     res = requests.get(url, headers={"X-Naver-Client-Id": client_id, "X-Naver-Client-Secret": client_secret})
+    i = 1
+    cleanr = re.compile('<.*?>')
     if res.ok:
-
         data_list = res.json()["items"]
+        for data in data_list:
+            data['rank'] = i
+            data['title'] = re.sub(cleanr, '', data['title'])
+            data['image'] = image(data['title'])
+            data['category'] = data['category'].split('>')[1]
+            i += 1
         return data_list
 
 
@@ -18,9 +25,13 @@ def search(query):
     client_secret = "ofIrQU9z72"
     url = f"https://openapi.naver.com/v1/search/local.json?query={query}"
     res = requests.get(url, headers={"X-Naver-Client-Id": client_id, "X-Naver-Client-Secret": client_secret})
+    cleanr = re.compile('<.*?>')
     if res.ok:
-        data_list = res.json()["items"][0]
-        return data_list
+        data = res.json()["items"][0]
+        data['title'] = re.sub(cleanr, '', data['title'])
+        data['image'] = image(data['title'])
+        data['category'] = data['category'].split('>')[1]
+        return data
 
 
 def image(query):
@@ -31,19 +42,6 @@ def image(query):
     if res.ok:
         data_list = res.json()["items"][1]['link']
         return data_list
-
-
-def preprocess(region):
-    i = 1
-    cleanr = re.compile('<.*?>')
-    data_list = hot_place(region)
-    for data in data_list:
-        data['rank'] = i
-        data['title'] = re.sub(cleanr, '', data['title'])
-        data['image'] = image(data['title'])
-        data['category'] = data['category'].split('>')[1]
-        i += 1
-    return data_list
 
 
 def seoul_place():

@@ -26,11 +26,11 @@
                 {{ data.rank }}. {{ data.title }}
                 </h5>
             </div>
-            <img class="card-img-top" style="height: 200px; object-fit: cover" src="{{ data.image }}">
+            <img class="card-img-top" style="height: 200px; object-fit: cover;" src="{{ data.image }}">
             <div class="card-body">
                 <p class="card-text">{{ data.category }}</p>
                 <p class="card-text">{{ data.address }}</p>
-                <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+                <a href="/place/{{ data.title }}" class="btn btn-primary">Read More &rarr;</a>
             </div>
         </div>
     </div>

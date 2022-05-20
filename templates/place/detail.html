@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>HIP</title>
+
+{% endblock %}
+
+{% block main_area %}
+
+
+
+<div class="col-lg-8">
+
+        <!-- Title -->
+        <h1 class="mt-4">{{ data.title }}</h1>
+
+        <!-- Author -->
+        <p class="lead">
+          <a href="#">{{ data.category }}</a>
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>{{ data.address }} | {{ data.roadAddress }}</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <div style="height: 400px; width: 100%">
+            {% if data.image %}
+                <img class="img-fluid rounded" style="height:100%; width: 50%; float: left; object-fit: cover" src="{{ data.image }}" alt="Card image cap">
+            {% else %}
+                <img class="card-img-top box" style="height:100%; width: 50%; float: left; object-fit: cover" src="https://picsum.photos/seed/{{ data.pk }}/800/200" alt="random_image">
+            {% endif %}
+            <div id="map" style="height:100%; width:50%; "></div>
+        </div>
+
+        <hr>
+
+        <!-- Post Content -->
+            <a href="{{ data.website }}">웹 사이트</a>
+        <hr>
+
+
+        <!-- Comments Form -->
+        <div class="card my-4">
+          <h5 class="card-header">Leave a Comment:</h5>
+          <div class="card-body">
+              {% if user.is_authenticated %}
+                <form id="comment-form" method="POST" action="{{ post.get_absolute_url }}new_comment/">
+                {% csrf_token %}
+                  <div class="form-group">
+                    {{ comment_form }}
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              {% endif %}
+          </div>
+        </div>
+
+        <!-- Single Comment -->
+    {% if post.comment_set.exists %}
+        {% for comment in post.comment_set.iterator %}
+        <div class="media mb-4">
+{#          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">#}
+          <div class="media-body">
+            <h5 class="mt-0">{{ comment.author }} ({{ comment.created_at }})</h5>
+                <p>{{ comment.content }}</p>
+          </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+
+      </div>
+{% endblock %}
+
+{% block js %}
+<script>
+var latLng = naver.maps.TransCoord.fromTM128ToLatLng(new naver.maps.Point({{data.mapx}}, {{data.mapy}}));
+
+var map = new naver.maps.Map('map', {
+        scaleControl: false,
+        logoControl: false,
+        mapDataControl: false,
+        zoomControl: true,
+        minZoom: 10,
+        maxZoom: 15,
+        zoom: 14,
+        center: latLng,
+    });
+
+var markers = [], infoWindows = [];
+
+
+var marker = new naver.maps.Marker({
+    position: latLng,
+    map: map,
+});
+
+var infowindow = new naver.maps.InfoWindow({
+    content: [
+        '<div class="iw_inner">',
+        '   <h3>{{ data.title }}</h3>',
+        '       {{ data.category }}<br />',
+        '   <p>{{ data.address }} | {{ data.roadAddress }}<br />',
+        '       <a href="{{ data.link }}" target="_blank">{{ data.link }}</a>',
+        '   </p>',
+        '</div>'
+    ].join('')
+});
+
+markers.push(marker);
+infoWindows.push(infowindow);
+
+function getClickHandler(seq) {
+    return function(e) {
+        var marker = markers[seq],
+            infoWindow = infoWindows[seq];
+
+        if (infoWindow.getMap()) {
+            infoWindow.close();
+        } else {
+            infoWindow.open(map, marker);
+        }
+    }
+}
+
+for (var i=0, ii=markers.length; i<ii; i++) {
+    naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
+}
+</script>
+{% endblock %}

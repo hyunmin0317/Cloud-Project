@@ -7,4 +7,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', hip.views.home),
     path('hip/', include('hip.urls')),
+    path('place/', include('place.urls')),
 ]
