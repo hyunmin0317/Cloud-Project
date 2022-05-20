@@ -1,9 +1,14 @@
 from django.shortcuts import render
-from hip.naver_api import hot_place
+from hip.naver_api import hot_place, image
 
 
 def home(request):
-    context = {"data_list": hot_place("서울")}
+    data_list = hot_place("서울")
+
+    for data in data_list:
+        data['image'] = image(data['title'])
+
+    context = {"data_list": data_list}
     return render(request, 'hip/home.html', context)
 
 

@@ -7,6 +7,7 @@ def hot_place(place):
     url = f"https://openapi.naver.com/v1/search/local.json?query={place}%20%EA%B0%80%EB%B3%BC%EB%A7%8C%ED%95%9C%EA%B3%B3&display=5"
     res = requests.get(url, headers={"X-Naver-Client-Id": client_id, "X-Naver-Client-Secret": client_secret})
     if res.ok:
+
         data_list = res.json()["items"]
         return data_list
 
