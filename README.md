@@ -18,4 +18,4 @@
   6. 사용자 장바구니에 있는 장소를 예약하고 결제할 수 있는 기능
 
 ## :blue_book: Flow diagram
-
+![flow diagram](https://github.com/hyunmin0317/Cloud-Project/blob/master/flow%20diagram.PNG?raw=true)
