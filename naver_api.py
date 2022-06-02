@@ -40,7 +40,7 @@ def image(query):
     url = f"https://openapi.naver.com/v1/search/image?query={query}&display=5"
     res = requests.get(url, headers={"X-Naver-Client-Id": client_id, "X-Naver-Client-Secret": client_secret})
     if res.ok:
-        data_list = res.json()["items"][1]['link']
+        data_list = res.json()["items"][0]['link']
         return data_list
 
 
