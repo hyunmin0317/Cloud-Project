@@ -15,8 +15,11 @@
 
 {% block main_area %}
     <div>
-    <div style="text-align: center"><h1>{{ region }} 핫플레이스</h1></div>
-<div id="map" style="height: 500px; width: 60%; margin: 0 auto; "></div>
+        <div style="text-align: center;"> <h1 class="mt-4">{{ region }} 핫플레이스</h1></div>
+        <div id="map" style="height: 450px; width: 75%; margin: 0 auto; "></div>
+    </div>
+{% endblock %}
+{% block out_area %}
     <div style="width: 100%">
     {% for data in data_list %}
     <div class="box">
@@ -35,7 +38,6 @@
         </div>
     </div>
     {% endfor %}
-    </div>
     </div>
 {% endblock %}
 

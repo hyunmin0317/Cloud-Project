@@ -15,41 +15,85 @@
 
 <body>
     {% include 'navbar.html'%}
-    <!-- Modal -->
-{#    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="logInModalLabel"#}
-{#        aria-hidden="true">#}
-{#        <div class="modal-dialog" role="document">#}
-{#            <div class="modal-content">#}
-{#                <div class="modal-header">#}
-{#                    <h5 class="modal-title" id="loginModalLabel"> <i class="fas fa-sign-in-alt"></i>&nbsp Log In</h5>#}
-{#                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
-{#                        <span aria-hidden="true">&times;</span>#}
-{#                    </button>#}
-{#                </div>#}
-{#                <div class="modal-body">#}
-{#                    <div class="row">#}
-{#                        <div class="col-md-6">#}
-{#                            <button type="button" class="btn btn-outline-dark btn-block btn-sm "><i class="fab fa-google"></i>&nbsp&nbsp Log in with Google</button>#}
-{#                            <button type="button" class="btn btn-outline-dark btn-block btn-sm "><i class="far fa-envelope"></i>&nbsp&nbsp Log in with E-mail</button>#}
-{#                        </div>#}
-{#                        <div class="col-md-6">#}
-{#                            <button type="button" class="btn btn-outline-dark btn-block btn-sm"><i class="far fa-envelope"></i>&nbsp&nbsp Sign Up with E-mail</button>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="modal-footer">#}
-{#                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-
-
     <div class="container my-3">
         <div class="row">
+            <div class="col-md-8 col-lg-9">
                 {% block main_area %}
 
                 {% endblock %}
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <!-- Search Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Search</h5>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary" type="button">Go!</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Places Widget -->
+                <div class="card my-5">
+                    <h5 class="card-header">Places</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-11">
+                                <ul class="list-unstyled mb-1">
+                                    <li>
+                                        <a href="/hip/강남구/">강남구</a>
+                                        <a href="/hip/강동구/">강동구</a>
+                                        <a href="/hip/강북구/">강북구</a>
+                                    </li>
+                                    <li>
+                                        <a href="/hip/강서구/">강서구</a>
+                                        <a href="/hip/관악구/">관악구</a>
+                                        <a href="/hip/광진구/">광진구</a>
+                                    </li>
+                                    <li>
+                                        <a href="/hip/구로구/">구로구</a>
+                                        <a href="/hip/금천구/">금천구</a>
+                                        <a href="/hip/노원구/">노원구</a>
+                                    </li>
+                                    <li>
+                                        <a href="/hip/도봉구/">도봉구</a>
+                                        <a href="/hip/동대문구/">동대문구</a>
+                                        <a href="/hip/동작구/">동작구</a>
+                                    </li>
+                                    <li>
+                                        <a href="/hip/마포구/">마포구</a>
+                                        <a href="/hip/서대문구/">서대문구</a>
+                                        <a href="/hip/서초구/">서초구</a>
+                                    </li>
+                                    <li>
+                                        <a href="/hip/성동구/">성동구</a>
+                                        <a href="/hip/성북구/">성북구</a>
+                                        <a href="/hip/송파구/">송파구</a>
+                                    </li>
+                                    <li>
+                                        <a href="/hip/양천구/">양천구</a>
+                                        <a href="/hip/영등포구/">영등포구</a>
+                                        <a href="/hip/용산구/">용산구</a>
+                                    </li>
+                                    <li>
+                                        <a href="/hip/은평구/">은평구</a>
+                                        <a href="/hip/종로구/">종로구</a>
+                                        <a href="/hip/중구/">중구</a>
+                                        <a href="/hip/중랑구/">중랑구</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% block out_area %}
+
+        {% endblock %}
         </div>
     </div>
 
