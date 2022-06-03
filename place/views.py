@@ -66,3 +66,16 @@ def modify_comment(request, comment_id):
         form = CommentForm(instance=comment)
         context = {'comment_form':form}
         return render(request, 'place/modify.html', context)
+
+
+@login_required(login_url='common:login')
+def like_place(request, place_id):
+    place = get_object_or_404(Place, pk=place_id)
+    place.voter.add(request.user)
+    return redirect(place.get_absolute_url())
+
+@login_required(login_url='common:login')
+def unlike_place(request, place_id):
+    place = get_object_or_404(Place, pk=place_id)
+    place.voter.remove(request.user)
+    return redirect(place.get_absolute_url())
