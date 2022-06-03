@@ -47,7 +47,10 @@
                 <form id="comment-form" method="POST" action="{{ post.get_absolute_url }}new_comment/">
                 {% csrf_token %}
                   <div class="form-group">
-                    {{ comment_form }}
+                      <label for="content">Comment</label>
+                      <textarea class="form-control"name="content" id="content" rows="2">
+                          {{ comment_form.content.value|default_if_none:'' }}
+                      </textarea>
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -56,8 +59,8 @@
         </div>
 
         <!-- Single Comment -->
-    {% if post.comment_set.exists %}
-        {% for comment in post.comment_set.iterator %}
+    {% if data.comment_set.exists %}
+        {% for comment in data.comment_set.iterator %}
         <div class="media mb-4">
 {#          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">#}
           <div class="media-body">
