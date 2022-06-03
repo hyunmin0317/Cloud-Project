@@ -66,6 +66,10 @@
           <div class="media-body">
             <h5 class="mt-0">{{ comment.author }} ({{ comment.created_at }})</h5>
                 <p>{{ comment.content }}</p>
+              {% if request.user == comment.author %}
+                  <a href="{{ comment.modify_url }}" class="small">수정</a>,
+                  <a href="{{ comment.delete_url }}" class="small">삭제</a>
+              {% endif %}
           </div>
         </div>
         {% endfor %}

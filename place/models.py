@@ -31,3 +31,9 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         return f'{self.place.get_absolute_url()}#comment-{self.pk}'
+
+    def delete_url(self):
+        return f'/place/comment/delete/{self.pk}'
+
+    def modify_url(self):
+        return f'/place/comment/modify/{self.pk}'
