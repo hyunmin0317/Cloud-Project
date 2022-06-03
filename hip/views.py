@@ -14,7 +14,9 @@ def detail(request, region):
 
 
 def all(request):
-    context = {"data_list":seoul_place()}
+    user = request.user
+    data_list = user.voter_post.all()
+    context = {"data_list":data_list}
     return render(request, 'hip/map.html', context)
 
 
