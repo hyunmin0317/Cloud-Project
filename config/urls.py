@@ -9,4 +9,5 @@ urlpatterns = [
     path('hip/', include('hip.urls')),
     path('place/', include('place.urls')),
     path('common/', include('common.urls')),
+    path('accounts/', include('allauth.urls')),
 ]
