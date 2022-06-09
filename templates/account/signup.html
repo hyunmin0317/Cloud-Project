@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>HIP</title>
+
+{% endblock %}
+
+{% block main_area %}
+<div class="container my-3">
+    <div class="row my-3">
+        <div class="col-4">
+            <h4>계정생성</h4>
+        </div>
+        <div class="col-8 text-right">
+            <span>또는 <a href="{{ login_url }}">로그인 하세요.</a></span>
+        </div>
+    </div>
+    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button type="submit">회원가입 &raquo;</button>
+    </form>
+</div>
+{% endblock %}
