@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from naver_api import seoul_place, hot_place
 
@@ -13,6 +14,7 @@ def detail(request, region):
     return render(request, 'hip/home.html', context)
 
 
+@login_required()
 def all(request):
     user = request.user
     data_list = user.voter_post.all()
