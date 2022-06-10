@@ -28,9 +28,23 @@
                     <h5 class="card-header">Search</h5>
                     <div class="card-body">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
+{#                            <form id="comment-form" method="POST" action="{{ post.get_absolute_url }}new_comment/">#}
+{#                            {% csrf_token %}#}
+{#                              <div class="form-group">#}
+{#                                  <label for="content">Comment</label>#}
+{#                                  <textarea class="form-control"name="content" id="content" rows="2">#}
+{#                                      {{ comment_form.content.value|default_if_none:'' }}#}
+{#                                  </textarea>#}
+{#                              </div>#}
+{#                              <button type="submit" class="btn btn-primary">Submit</button>#}
+{#                            </form>#}
+                            <input type="text" class="form-control query" value="{{ query|default_if_none:'' }}" onkeyup="enterkey()" placeholder="Search for...">
                             <span class="input-group-btn">
-                                <button class="btn btn-secondary" type="button">Go!</button>
+                                <button class="btn btn-secondary" type="button" id="btn_search">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                    </svg>
+                                </button>
                             </span>
                         </div>
                     </div>
@@ -99,6 +113,11 @@
 
     {% include 'footer.html'%}
 
+<form id="searchForm" method="get" action="{% url 'place:search' %}">
+    <input type="hidden" id="query" name="query" value="{{ query|default_if_none:'' }}">
+</form>
+</body>
+
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -109,9 +128,21 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <script type='text/javascript'>
+        $(document).ready(function(){
+            $("#btn_search").on('click', function() {
+                $("#query").val($(".query").val());
+                $("#searchForm").submit();
+            });
+        });
+
+        function enterkey() {
+            if (window.event.keyCode == 13) {
+                $("#query").val($(".query").val());
+                $("#searchForm").submit();
+            }
+        }
+    </script>
     {% block js %}
     {% endblock %}
-
-</body>
-
 </html>

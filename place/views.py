@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, get_object_or_404, redirect
-from naver_api import search
+from naver_api import search, place_search
 from place.forms import CommentForm
 from place.models import Place, Comment
 
@@ -18,7 +18,14 @@ def detail(request, region):
     return render(request, 'place/detail.html', context)
 
 
-@login_required(login_url='common:login')
+def search_place(request):
+    region = request.GET.get('query', '')  # 검색어
+    data_list = place_search(region)
+    context = {'data_list':data_list}
+    return render(request, 'place/search.html', context)
+
+
+@login_required()
 def new_comment(request, region):
     if request.user.is_authenticated:
         place = get_object_or_404(Place, title=region)
@@ -37,7 +44,7 @@ def new_comment(request, region):
             raise PermissionDenied
 
 
-@login_required(login_url='common:login')
+@login_required()
 def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     if request.user != comment.author:
@@ -47,7 +54,7 @@ def delete_comment(request, comment_id):
     return redirect(comment.get_absolute_url())
 
 
-@login_required(login_url='common:login')
+@login_required()
 def modify_comment(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     if request.user != comment.author:
@@ -68,13 +75,13 @@ def modify_comment(request, comment_id):
         return render(request, 'place/modify.html', context)
 
 
-@login_required(login_url='common:login')
+@login_required()
 def like_place(request, place_id):
     place = get_object_or_404(Place, pk=place_id)
     place.voter.add(request.user)
     return redirect(place.get_absolute_url())
 
-@login_required(login_url='common:login')
+@login_required()
 def unlike_place(request, place_id):
     place = get_object_or_404(Place, pk=place_id)
     place.voter.remove(request.user)

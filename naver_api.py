@@ -34,14 +34,34 @@ def search(query):
         return data
 
 
+def place_search(query):
+    client_id = "IDEZlxRWK9_vy7ZmJbtf"
+    client_secret = "ofIrQU9z72"
+    url = f"https://openapi.naver.com/v1/search/local.json?query={query}&display=5"
+    res = requests.get(url, headers={"X-Naver-Client-Id": client_id, "X-Naver-Client-Secret": client_secret})
+    cleanr = re.compile('<.*?>')
+    if res.ok:
+        datas = res.json()["items"]
+        print(len(datas))
+        for data in datas:
+            data['title'] = re.sub(cleanr, '', data['title'])
+            data['image'] = image(data['title'])
+            data['category'] = data['category'].split('>')[1]
+        return datas
+
+
 def image(query):
     client_id = "IDEZlxRWK9_vy7ZmJbtf"
     client_secret = "ofIrQU9z72"
     url = f"https://openapi.naver.com/v1/search/image?query={query}&display=5"
     res = requests.get(url, headers={"X-Naver-Client-Id": client_id, "X-Naver-Client-Secret": client_secret})
     if res.ok:
-        data_list = res.json()["items"][0]['link']
-        return data_list
+        data = res.json()["items"]
+        if len(data) == 0:
+            link = ""
+        else:
+            link = res.json()["items"][0]['link']
+        return link
 
 
 def seoul_place():
