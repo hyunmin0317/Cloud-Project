@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% load filter %}
 {% load static %}
 
@@ -69,7 +70,7 @@
                 {% csrf_token %}
                   <div class="form-group">
                       <label for="content">Comment</label>
-                      {{ comment_form }}
+                      {{ comment_form | crispy }}
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
