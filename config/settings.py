@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'hip.apps.HipConfig',
     'place.apps.PlaceConfig',
-    'common.apps.CommonConfig',
 ]
 
 MIDDLEWARE = [
