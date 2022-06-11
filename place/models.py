@@ -23,8 +23,8 @@ class Comment(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    modified_at = models.DateTimeField(auto_now=True)
+    image = models.ImageField(upload_to='images/%Y/%m/%d/', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f'{self.author}::{self.content}'
