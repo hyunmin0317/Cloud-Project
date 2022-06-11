@@ -1,29 +1,53 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
 {% load static %}
 {% load crispy_forms_tags %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    {% block title %}
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}" media="screen">
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=t7r550sr3g"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=t7r550sr3g&submodules=geocoder"></script>
+    <script src="https://kit.fontawesome.com/726bbd6862.js" crossorigin="anonymous"></script>
+</head>
 
-{% block title %}
-    <title>HIP</title>
+<body>
+    {% include 'navbar.html'%}
 
-{% endblock %}
-
-{% block main_area %}
-<div class="container my-3">
-    <div class="row my-3">
-        <div class="col-4">
-            <h4>계정생성</h4>
+    <div class="container my-5" style="width: 50%;">
+        <div class="row my-3">
+            <div class="col-4">
+                <h4>계정생성</h4>
+            </div>
+            <div class="col-8 text-right">
+                <span>또는 <a href="{{ login_url }}">로그인 하세요.</a></span>
+            </div>
         </div>
-        <div class="col-8 text-right">
-            <span>또는 <a href="{{ login_url }}">로그인 하세요.</a></span>
-        </div>
+        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+          {% csrf_token %}
+          {{ form | crispy }}
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+          {% endif %}
+          <button class="btn btn-primary" type="submit">회원가입 &raquo;</button>
+        </form>
     </div>
-    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-      {% csrf_token %}
-      {{ form | crispy }}
-      {% if redirect_field_value %}
-      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-      {% endif %}
-      <button type="submit">회원가입 &raquo;</button>
-    </form>
-</div>
-{% endblock %}
+    {% include 'footer.html'%}
+
+<form id="searchForm" method="get" action="{% url 'place:search' %}">
+    <input type="hidden" id="query" name="query" value="{{ query|default_if_none:'' }}">
+</form>
+</body>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</html>
