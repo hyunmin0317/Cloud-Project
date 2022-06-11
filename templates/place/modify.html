@@ -16,7 +16,6 @@
                 <form id="comment-form" method="POST">
                 {% csrf_token %}
                   <div class="form-group">
-                      <label for="content">Comment</label>
                       {{ comment_form | crispy }}
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>

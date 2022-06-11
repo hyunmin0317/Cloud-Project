@@ -22,7 +22,7 @@ class Place(models.Model):
 class Comment(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField()
+    content = models.CharField(max_length=500)
     image = models.ImageField(upload_to='images/%Y/%m/%d/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now=True)
 
