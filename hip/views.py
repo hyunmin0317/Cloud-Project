@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from naver_api import seoul_place, hot_place
+from naver_api import hot_place
 
 
 def home(request):
@@ -20,7 +20,3 @@ def all(request):
     data_list = user.voter_post.all()
     context = {"data_list":data_list}
     return render(request, 'hip/map.html', context)
-
-
-def index(request):
-    return render(request, 'hip/index.html')
