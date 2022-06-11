@@ -65,13 +65,11 @@
           <h5 class="card-header">Leave a Comment:</h5>
           <div class="card-body">
               {% if user.is_authenticated %}
-                <form id="comment-form" method="POST" action="{{ post.get_absolute_url }}new_comment/">
+                <form id="comment-form" method="POST" action="{{ post.get_absolute_url }}new_comment/" enctype="multipart/form-data">
                 {% csrf_token %}
                   <div class="form-group">
                       <label for="content">Comment</label>
-                      <textarea class="form-control"name="content" id="content" rows="2">
-                          {{ comment_form.content.value|default_if_none:'' }}
-                      </textarea>
+                      {{ comment_form }}
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
