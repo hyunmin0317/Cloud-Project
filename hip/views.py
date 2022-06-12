@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.contrib.auth.models import User
+from django.shortcuts import render, get_object_or_404
 from naver_api import hot_place
 
 
@@ -15,8 +16,8 @@ def detail(request, region):
 
 
 @login_required()
-def all(request):
-    user = request.user
+def all(request, name):
+    user = get_object_or_404(User, username=name)
     data_list = user.voter_post.all()
     context = {"data_list":data_list}
     return render(request, 'hip/map.html', context)
