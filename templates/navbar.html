@@ -17,7 +17,7 @@
 
           {% if user.is_authenticated %}
               <div class="text-end ml-auto">
-                  <a type="button" class="btn btn-outline-light me-2" href="{% url 'hip:all' user.username %}">{{ user.username }}</a>
+                  <a type="button" class="btn btn-outline-light me-2" href="{% url 'hip:profile' user.username %}">{{ user.username }}</a>
                   <a type="button" class="btn btn-warning" href="{% url 'logout' %}">Logout</a>
               </div>
         {% else %}

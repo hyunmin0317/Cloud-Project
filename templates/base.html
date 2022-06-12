@@ -8,6 +8,7 @@
     {% block title %}
     {% endblock %}
     <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=t7r550sr3g"></script>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=t7r550sr3g&submodules=geocoder"></script>
     <script src="https://kit.fontawesome.com/726bbd6862.js" crossorigin="anonymous"></script>
@@ -15,11 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet">
-    <style>
-      .nav-title{
-        font-family: 'Gugi', sans-serif;
-      }
-    </style>
+
 </head>
 
 <body>
@@ -46,7 +43,27 @@
                     </ul>
                   </div>
                   <div class="card-body">
-                      <div style="overflow: auto; height: 100%"></div>
+                      <div style="overflow: auto; height: 100%">
+
+                          {% for profile in profiles %}
+                              <div style="margin: 10px">
+                              <a href="{% url 'hip:profile' profile.user %}" style="margin-top: 10px">
+                                  <div class="profile-image">
+                                  {% if profile.image %}
+                                    <img src="{{profile.image.url}}" width="30" height="30">
+                                  {% else %}
+                                    <img src="{% static 'img/profile.jpg' %}" width="30" height="30">
+                                  {% endif %}
+                                  <div style="margin-left: 5px">
+                                      {{ profile.user }}
+                                  </div>
+                                  </div>
+                              </a>
+                              </div>
+                              <br>
+                              <hr>
+                          {% endfor %}
+                      </div>
                   </div>
                 </div>
             </div>

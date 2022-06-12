@@ -32,7 +32,6 @@ def new_comment(request, region):
 
         if request.method == 'POST':
             comment_form = CommentForm(request.POST, request.FILES)
-            print(request.FILES)
             if comment_form.is_valid():
                 comment = comment_form.save(commit=False)
                 comment.place = place

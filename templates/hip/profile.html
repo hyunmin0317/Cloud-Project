@@ -13,12 +13,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet">
-    <style>
-      .nav-title{
-        font-family: 'Gugi', sans-serif;
-      }
-    </style>
-
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=t7r550sr3g"></script>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=t7r550sr3g&submodules=geocoder"></script>
     <script src="https://kit.fontawesome.com/726bbd6862.js" crossorigin="anonymous"></script>
@@ -35,7 +29,11 @@
                     <div class="containers">
                         <div class="profile">
                             <div class="profile-image">
+                                {% if profile.image %}
+                                <img src="{{profile.image.url}}" width="200" height="200">
+                                {% else %}
                                 <img src="{% static 'img/profile.jpg' %}" width="200" height="200">
+                                {% endif %}
                             </div>
 
                             <div class="profile-user-settings"><br>
