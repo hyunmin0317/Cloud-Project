@@ -19,7 +19,8 @@ def home(request):
 
 
 def detail(request, region):
-    context = {"region": region, "data_list": hot_place(region)}
+    profiles = Profile.objects.all()
+    context = {"region": region, "data_list": hot_place(region), "profiles":profiles}
     return render(request, 'hip/home.html', context)
 
 

@@ -2,6 +2,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, get_object_or_404, redirect
+
+from hip.models import Profile
 from naver_api import search, place_search
 from place.forms import CommentForm
 from place.models import Place, Comment
@@ -9,19 +11,20 @@ from place.models import Place, Comment
 
 def detail(request, region):
     place = search(region)
-
+    profiles = Profile.objects.all()
     exist = Place.objects.filter(title=place['title'])
     if not exist:
         Place.objects.create(title=place['title'], address=place['address'] , roadAddress=place['roadAddress'] , category=place['category'] , image=place['image'] , website=place['link'] , mapx=place['mapx'] , mapy=place['mapy'] )
     data = Place.objects.get(title=place['title'])
-    context = {'data':data, 'comment_form':CommentForm}
+    context = {'data':data, 'comment_form':CommentForm, 'profiles':profiles}
     return render(request, 'place/detail.html', context)
 
 
 def search_place(request):
     region = request.GET.get('query', '')  # 검색어
+    profiles = Profile.objects.all()
     data_list = place_search(region)
-    context = {'data_list':data_list}
+    context = {'data_list':data_list, 'profiles':profiles}
     return render(request, 'place/search.html', context)
 
 
@@ -71,7 +74,8 @@ def modify_comment(request, comment_id):
             return redirect(comment.get_absolute_url())
     else:
         form = CommentForm(instance=comment)
-        context = {'comment_form':form}
+        profiles = Profile.objects.all()
+        context = {'comment_form':form, 'profiles':profiles}
         return render(request, 'place/modify.html', context)
 
 
