@@ -20,4 +20,4 @@ def all(request, name):
     user = get_object_or_404(User, username=name)
     data_list = user.voter_post.all()
     context = {"data_list":data_list}
-    return render(request, 'hip/map.html', context)
+    return render(request, 'hip/profile.html', context)

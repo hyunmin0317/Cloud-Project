@@ -5,5 +5,5 @@ app_name = 'hip'
 
 urlpatterns = [
     path('<str:region>/', views.detail, name='detail'),
-    path('places/<str:name>/', views.all, name='all'),
+    path('profile/<str:name>/', views.all, name='all'),
 ]

@@ -8,6 +8,17 @@
     {% block title %}
     {% endblock %}
     <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<!-- 글꼴 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet">
+    <style>
+      .nav-title{
+        font-family: 'Gugi', sans-serif;
+      }
+    </style>
+
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=t7r550sr3g"></script>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=t7r550sr3g&submodules=geocoder"></script>
     <script src="https://kit.fontawesome.com/726bbd6862.js" crossorigin="anonymous"></script>
@@ -15,13 +26,49 @@
 
 <body>
     {% include 'navbar.html'%}
+
     <div class="container my-3">
         <div class="row">
             <div class="col-md-8 col-lg-8" >
-                <div id="map" style="height: 500px; width: 100%; margin: 0 auto; "></div>
+
+                <header>
+                    <div class="containers">
+                        <div class="profile">
+                            <div class="profile-image">
+                                <img src="{% static 'img/profile.jpg' %}" width="200" height="200">
+                            </div>
+
+                            <div class="profile-user-settings"><br>
+                                <h1 class="profile-name">choihm9903{{users.username}}</h1>
+                            </div>
+
+                            <div class="profile-stats">
+                                <ul>
+                                    <a href="#" style="text-decoration-line: none; color:black;">
+                                        <li>MY플레이스 <span class="profile-stat-count">32{{posts.count}}</span></li>
+                                    </a>
+                                    <a href="#" style="margin-left:20px; text-decoration-line: none; color:black;">
+                                        <li>댓글수 <span class="profile-stat-count">32{{posts.count}}</span></li>
+                                    </a>
+                                </ul>
+
+                                <a href="#" style="text-decoration-line: none; color:black;">
+                                    <button type="submit" class="btn profile-edit-btn" href="#">
+                                        프로필 편집
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                  </header>
+
+                <div id="map" style="height: 530px; width: 100%; margin: 0 auto; "></div>
             </div>
             <div class="col-md-4 col-lg-4" >
-            <div style="overflow: scroll; height: 500px">
+
+            <div style="margin-top:3rem">
+            <h3 class="nav-title">MY플레이스</h3>
+            <div style="overflow: scroll; height: 800px">
                 {% for data in data_list %}
                 <div class="box">
                     <div class="card mb-5">
@@ -37,6 +84,7 @@
                     </div>
                 </div>
                 {% endfor %}
+            </div>
             </div>
             </div>
         </div>
