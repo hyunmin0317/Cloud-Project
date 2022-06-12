@@ -19,5 +19,6 @@ def detail(request, region):
 def all(request, name):
     user = get_object_or_404(User, username=name)
     data_list = user.voter_post.all()
-    context = {"data_list":data_list}
+    comment_list = user.comment_set.all()
+    context = {"data_list":data_list, 'username':name, 'placecnt':len(data_list), 'commentcnt':len(comment_list)}
     return render(request, 'hip/profile.html', context)

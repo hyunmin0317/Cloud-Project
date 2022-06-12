@@ -8,7 +8,7 @@
     {% block title %}
     {% endblock %}
     <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}" media="screen">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 <!-- 글꼴 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,16 +39,16 @@
                             </div>
 
                             <div class="profile-user-settings"><br>
-                                <h1 class="profile-name">choihm9903{{users.username}}</h1>
+                                <h1 class="profile-name">{{username}}</h1>
                             </div>
 
                             <div class="profile-stats">
                                 <ul>
-                                    <a href="#" style="text-decoration-line: none; color:black;">
-                                        <li>MY플레이스 <span class="profile-stat-count">32{{posts.count}}</span></li>
+                                    <a style="text-decoration-line: none; color:black;">
+                                        <li>MY플레이스 <span class="profile-stat-count">{{placecnt}}</span></li>
                                     </a>
-                                    <a href="#" style="margin-left:20px; text-decoration-line: none; color:black;">
-                                        <li>댓글수 <span class="profile-stat-count">32{{posts.count}}</span></li>
+                                    <a style="margin-left:20px; text-decoration-line: none; color:black;">
+                                        <li>댓글수 <span class="profile-stat-count">{{commentcnt}}</span></li>
                                     </a>
                                 </ul>
 
@@ -67,8 +67,8 @@
             <div class="col-md-4 col-lg-4" >
 
             <div style="margin-top:3rem">
-            <h3 class="nav-title">MY플레이스</h3>
-            <div style="overflow: scroll; height: 800px">
+            <h3 class="nav-title">MY플레이스 - {{ placecnt }}</h3>
+            <div style="overflow: auto; height: 800px">
                 {% for data in data_list %}
                 <div class="box">
                     <div class="card mb-5">
