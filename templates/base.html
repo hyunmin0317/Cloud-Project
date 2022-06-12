@@ -33,58 +33,21 @@
             </div>
             <div class="col-md-12 col-lg-3">
                 <!-- Places Widget -->
-                <div class="card my-5" style="height: 450px">
-                    <h5 class="card-header">Places</h5>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-11">
-                                <ul class="list-unstyled mb-1">
-                                    <li>
-                                        <a href="/hip/강남구/">강남구</a>
-                                        <a href="/hip/강동구/">강동구</a>
-                                        <a href="/hip/강북구/">강북구</a>
-                                    </li>
-                                    <li>
-                                        <a href="/hip/강서구/">강서구</a>
-                                        <a href="/hip/관악구/">관악구</a>
-                                        <a href="/hip/광진구/">광진구</a>
-                                    </li>
-                                    <li>
-                                        <a href="/hip/구로구/">구로구</a>
-                                        <a href="/hip/금천구/">금천구</a>
-                                        <a href="/hip/노원구/">노원구</a>
-                                    </li>
-                                    <li>
-                                        <a href="/hip/도봉구/">도봉구</a>
-                                        <a href="/hip/동대문구/">동대문구</a>
-                                        <a href="/hip/동작구/">동작구</a>
-                                    </li>
-                                    <li>
-                                        <a href="/hip/마포구/">마포구</a>
-                                        <a href="/hip/서대문구/">서대문구</a>
-                                        <a href="/hip/서초구/">서초구</a>
-                                    </li>
-                                    <li>
-                                        <a href="/hip/성동구/">성동구</a>
-                                        <a href="/hip/성북구/">성북구</a>
-                                        <a href="/hip/송파구/">송파구</a>
-                                    </li>
-                                    <li>
-                                        <a href="/hip/양천구/">양천구</a>
-                                        <a href="/hip/영등포구/">영등포구</a>
-                                        <a href="/hip/용산구/">용산구</a>
-                                    </li>
-                                    <li>
-                                        <a href="/hip/은평구/">은평구</a>
-                                        <a href="/hip/종로구/">종로구</a>
-                                        <a href="/hip/중구/">중구</a>
-                                        <a href="/hip/중랑구/">중랑구</a>
-                                    </li>
 
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                <div class="card" style="height: 450px; margin-top: 2rem">
+                  <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="true" href="#">프로필</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">모두 보기</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-body">
+                      <div style="overflow: auto; height: 100%"></div>
+                  </div>
                 </div>
             </div>
         {% block out_area %}
@@ -96,8 +59,6 @@
     {% include 'footer.html'%}
 
 </body>
-
-
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
