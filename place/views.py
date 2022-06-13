@@ -65,7 +65,7 @@ def modify_comment(request, comment_id):
         return redirect('home')
 
     if request.method == 'POST':
-        comment_form = CommentForm(request.POST, instance=comment)
+        comment_form = CommentForm(request.POST, request.FILES, instance=comment)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.save()

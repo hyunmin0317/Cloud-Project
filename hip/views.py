@@ -52,5 +52,5 @@ def update(request, name):
     else:
         profiles = Profile.objects.all()
         form = ProfileForm(instance=profile)
-        context = {'form': form, 'profiles':profiles}
+        context = {'form': form, 'profile':profile, 'profiles':profiles}
         return render(request, 'hip/update.html', context)

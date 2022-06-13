@@ -9,9 +9,16 @@
 
 {% block main_area %}
         <!-- Comments Form -->
-        <div class="card my-4">
-          <h5 class="card-header">Leave a Comment:</h5>
+        <div class="card my-4" style="height: 450px">
+          <h5 class="card-header">프로필 사진 수정</h5>
           <div class="card-body">
+                {% if profile.image %}
+                    <img src="{{profile.image.url}}" width="150" height="150">
+                {% else %}
+                    <img src="{% static 'img/profile.jpg' %}" width="150" height="150">
+                {% endif %}
+          <br>
+
               {% if user.is_authenticated %}
                 <form id="comment-form" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
