@@ -50,11 +50,13 @@
                                     </a>
                                 </ul>
 
-                                <a href="#" style="text-decoration-line: none; color:black;">
+                                {% if request.user == users %}
+                                <a href="{% url 'hip:update' users.username  %}" style="text-decoration-line: none; color:black;">
                                     <button type="submit" class="btn profile-edit-btn" href="#">
                                         프로필 편집
                                     </button>
                                 </a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
