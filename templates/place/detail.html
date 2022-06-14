@@ -89,8 +89,8 @@
                 <p class="card-text">{{ comment.content }}</p>
                 <p class="card-text">{{ comment.created_at }}</p>
                 {% if request.user == comment.author %}
-                  <a href="{{ comment.modify_url }}" class="small">수정</a>,
-                  <a href="{{ comment.delete_url }}" class="small">삭제</a>
+                  <a class="btn btn-light" href="{{ comment.modify_url }}" class="small">수정</a>
+                  <a class="btn btn-light" href="{{ comment.delete_url }}" class="small">삭제</a>
                 {% endif %}
             </div>
         </div>

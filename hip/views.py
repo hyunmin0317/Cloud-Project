@@ -26,7 +26,6 @@ def detail(request, region):
     return render(request, 'hip/home.html', context)
 
 
-@login_required()
 def myprofile(request, name):
     user = get_object_or_404(User, username=name)
     profile = get_object_or_404(Profile, user=user)

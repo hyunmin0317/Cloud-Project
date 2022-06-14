@@ -10,7 +10,7 @@
 {% block main_area %}
         <!-- Comments Form -->
         <div class="card my-4">
-          <h5 class="card-header">Leave a Comment:</h5>
+          <h5 class="card-header">리뷰 작성</h5>
           <div class="card-body">
               {% if user.is_authenticated %}
                 <form id="comment-form" method="POST" enctype="multipart/form-data">
@@ -18,7 +18,7 @@
                   <div class="form-group">
                       {{ comment_form | crispy }}
                   </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">등록</button>
                 </form>
               {% endif %}
           </div>
