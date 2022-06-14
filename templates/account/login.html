@@ -2,6 +2,7 @@
 <html>
 {% load static %}
 {% load crispy_forms_tags %}
+{% load socialaccount %}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,7 +54,7 @@
             <a style="margin-left: 1rem" href="{{ signup_url }}" class="a-tag" >비밀번호 찾기</a>
         </div>
 
-        <button class="btn btn-outline-dark me-2" type="submit" style="width: 100%; margin-top: 2rem"><i class="fab fa-google"></i> Google 로그인</button>
+        <a href="{% provider_login_url 'google' %}" class="btn btn-outline-dark me-2" type="submit" style="width: 100%; margin-top: 2rem"><i class="fab fa-google"></i> Google 로그인</a>
     </div>
 
     {% include 'footer.html'%}

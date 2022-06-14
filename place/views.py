@@ -24,7 +24,7 @@ def search_place(request):
     region = request.GET.get('query', '')  # 검색어
     profiles = Profile.objects.all()
     data_list = place_search(region)
-    context = {'data_list':data_list, 'profiles':profiles}
+    context = {'data_list':data_list, 'profiles':profiles, 'query':region}
     return render(request, 'place/search.html', context)
 
 
