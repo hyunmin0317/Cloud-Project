@@ -15,7 +15,7 @@ def hot_place(place):
             data['rank'] = i
             data['title'] = re.sub(cleanr, '', data['title'])
             data['image'] = image(data['title'])
-            data['category'] = data['category'].split('>')[1]
+            data['category'] = data['category'].split('>')[-1]
             i += 1
         return data_list
 
@@ -30,7 +30,7 @@ def search(query):
         data = res.json()["items"][0]
         data['title'] = re.sub(cleanr, '', data['title'])
         data['image'] = image(data['title'])
-        data['category'] = data['category'].split('>')[1]
+        data['category'] = data['category'].split('>')[-1]
         return data
 
 
@@ -46,7 +46,7 @@ def place_search(query):
         for data in datas:
             data['title'] = re.sub(cleanr, '', data['title'])
             data['image'] = image(data['title'])
-            data['category'] = data['category'].split('>')[1]
+            data['category'] = data['category'].split('>')[-1]
         return datas
 
 

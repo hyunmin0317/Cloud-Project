@@ -9,10 +9,6 @@
 {% endblock %}
 
 {% block main_area %}
-
-
-
-
         <!-- Title -->
         <h1 class="mt-4">{{ data.title }}</h1>
 
@@ -43,6 +39,7 @@
 
         <br>
         <!-- Like Content -->
+    <div>
             {% confirm_like request.user.username data.id as l %}
             {% if l == 'like' %}
                 <a class="btn btn-primary" href="{% url 'place:unlike_place' data.id %}" class="recommend btn btn-sm btn-secondary btn-block my-1">
@@ -59,18 +56,20 @@
                     {{ data.voter.count }}
                 </a>
             {% endif %}
+        &nbsp;좋아요 <b>{{ data.voter.count }}</b>
+        &nbsp;리뷰 <b>{{ data.comment_set.count }}</b>
+    </div>
         <hr>
-
         <!-- Comments Form -->
         <div class="card my-4">
-          <h5 class="card-header">Leave a Comment:</h5>
+          <h5 class="card-header">리뷰 작성</h5>
           <div class="card-body">
               <form id="comment-form" method="POST" action="{{ post.get_absolute_url }}new_comment/" enctype="multipart/form-data">
                   {% csrf_token %}
                   <div class="form-group">
                       {{ comment_form | crispy }}
                   </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">등록</button>
               </form>
           </div>
         </div>
