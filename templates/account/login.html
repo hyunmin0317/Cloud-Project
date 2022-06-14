@@ -20,6 +20,10 @@
       .nav-title{
         font-family: 'Gugi', sans-serif;
       }
+      .a-tag{
+        text-decoration: none;
+        color: black;
+      }
     </style>
 </head>
 
@@ -27,23 +31,29 @@
 
     {% include 'navbar.html'%}
 
-    <div class="container my-5" style="width: 50%">
-        <div class="row">
+    <div class="container my-5" style="width: 30%">
+        <center>
             <div class="col-4">
-                <h4>로그인</h4>
+                <a href="/" class="a-tag">
+                    <h1 class="nav-title">HIP</h1>
+                </a>
             </div>
-            <div class="col-8 text-right">
-                    <span>또는 <a href="{{ signup_url }}">계정을 만드세요.</a></span>
-            </div>
-        </div><br>
+        </center>
+        <br>
         <form class="login" method="POST" action="{% url 'account_login' %}">
           {% csrf_token %}
           {{ form | crispy }}
           {% if redirect_field_value %}
           <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
           {% endif %}
-          <button class="btn btn-primary" type="submit">로그인 &raquo;</button>
+          <button class="btn btn-primary" type="submit" style="width: 100%">로그인</button>
         </form>
+        <div style="margin-top: 1rem">
+            <a href="{{ signup_url }}" class="a-tag">회원가입</a>
+            <a style="margin-left: 1rem" href="{{ signup_url }}" class="a-tag" >비밀번호 찾기</a>
+        </div>
+
+        <button class="btn btn-outline-dark me-2" type="submit" style="width: 100%; margin-top: 2rem"><i class="fab fa-google"></i> Google 로그인</button>
     </div>
 
     {% include 'footer.html'%}

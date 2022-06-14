@@ -4,6 +4,10 @@
 img {
     display: block;
 }
+.a-tag{
+    text-decoration: none;
+    color: white;
+}
 .nav-title{
         font-family: 'Gugi', sans-serif;
       }
