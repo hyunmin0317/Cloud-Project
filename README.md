@@ -15,7 +15,8 @@
   3. 장소의 정보와 위치를 보여주는 기능
   4. 장소에 대한 리뷰 기능 
   5. 원하는 장소 저장 기능
-  6. 사용자 프로필 기능
+  6. 사용자 프로필 기능 
+  7. 구글 로그인 기능
 
 ## :globe_with_meridians: Website URL
 * ### [https://hip.ktpaasta-v4.kr](https://hip.ktpaasta-v4.kr)
