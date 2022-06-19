@@ -19,7 +19,7 @@
   7. 구글 로그인 기능
 
 ## :globe_with_meridians: Website URL
-* ### [https://hip.ktpaasta-v4.kr](https://hip.ktpaasta-v4.kr)
+* ### [https://hip.ktpaasta-v4.kr](http://hip.ktpaasta-v4.kr)
 
 ## :blue_book: Flow diagram
 ![flow diagram](https://github.com/hyunmin0317/Cloud-Project/blob/master/flow%20diagram.PNG?raw=true)
